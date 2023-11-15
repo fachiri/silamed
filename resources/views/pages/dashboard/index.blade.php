@@ -26,7 +26,7 @@
 										</div>
 										<div>
 											<h6 class="text-muted font-semibold">Pengikut</h6>
-											<h6 class="mb-0 font-extrabold">{{ $item->statistiks[0]->pengikut }}</h6>
+											<h6 class="mb-0 font-extrabold">{{ isset($item->statistiks[0]->pengikut) ? $item->statistiks[0]->pengikut : 0 }}</h6>
 										</div>
 									</div>
 									<div class="col-4">
@@ -37,7 +37,7 @@
 										</div>
 										<div>
 											<h6 class="text-muted font-semibold">Jangkauan</h6>
-											<h6 class="mb-0 font-extrabold">{{ $item->statistiks[0]->jangkauan }}</h6>
+											<h6 class="mb-0 font-extrabold">{{ isset($item->statistiks[0]->jangkauan) ? $item->statistiks[0]->jangkauan : 0 }}</h6>
 										</div>
 									</div>
 									<div class="col-4">
@@ -48,7 +48,7 @@
 										</div>
 										<div>
 											<h6 class="text-muted font-semibold">Interaksi</h6>
-											<h6 class="mb-0 font-extrabold">{{ $item->statistiks[0]->interaksi }}</h6>
+											<h6 class="mb-0 font-extrabold">{{ isset($item->statistiks[0]->interaksi) ? $item->statistiks[0]->interaksi : 0 }}</h6>
 										</div>
 									</div>
 								</div>
