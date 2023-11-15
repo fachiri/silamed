@@ -318,13 +318,16 @@ class LaporanController extends Controller
                 $stats[$i]['data'][$sosmedItem->sosmed] = [
                     'pengikutBulanIni' => $pengikutBulanIni,
                     'pengikutBulanLalu' => $pengikutBulanLalu,
-                    'pengikutPersentase' => number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2),
+                    // 'pengikutPersentase' => $statBulanLalu > 0 ? number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2) : 100, // jika bulanLalu == 0 dan bulanIni > 0, maka 100. jika bulanLalu dan bulanIni == 0, maka 0. else number_format.....
                     'jangkauanBulanIni' => $jangkauanBulanIni,
                     'jangkauanBulanLalu' => $jangkauanBulanLalu,
-                    'jangkauanPersentase' => number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2),
+                    // 'jangkauanPersentase' => $statBulanLalu > 0 ? number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2) : 100, // jika bulanLalu == 0 dan bulanIni > 0, maka 100. jika bulanLalu dan bulanIni == 0, maka 0. else number_format.....
                     'interaksiBulanIni' => $interaksiBulanIni,
                     'interaksiBulanLalu' => $interaksiBulanLalu,
-                    'interaksiPersentase' => number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2),
+                    // 'interaksiPersentase' => $statBulanLalu > 0 ? number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2) : 100, // jika bulanLalu == 0 dan bulanIni > 0, maka 100. jika bulanLalu dan bulanIni == 0, maka 0. else number_format.....
+                    'pengikutPersentase' => $statBulanLalu > 0 ? number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2) : ($pengikutBulanLalu == 0 && $pengikutBulanIni > 0 ? 100 : 0),
+                    'jangkauanPersentase' => $statBulanLalu > 0 ? number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2) : ($jangkauanBulanLalu == 0 && $jangkauanBulanIni > 0 ? 100 : 0),
+                    'interaksiPersentase' => $statBulanLalu > 0 ? number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2) : ($interaksiBulanLalu == 0 && $interaksiBulanIni > 0 ? 100 : 0),
                 ];
             }
         }
