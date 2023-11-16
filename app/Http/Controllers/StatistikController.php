@@ -6,6 +6,7 @@ use App\Http\Requests\StoreStatistikRequest;
 use App\Http\Requests\UpdateStatistikRequest;
 use App\Models\Sosmed;
 use App\Models\Statistik;
+use App\Models\Target;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -85,7 +86,9 @@ class StatistikController extends Controller
             'interaksi' => number_format((($statBulanIni->interaksi - $statBulanLalu->interaksi) / $statBulanLalu->interaksi) * 100, 2),
         ];
 
-        return view('pages.statistik.show', compact('statBulanIni', 'statBulanLalu', 'persentase'));
+        $target = Target::where(['periode' => $periodeBulanIni, 'sosmed_id' => $sosmed->id])->first();
+
+        return view('pages.statistik.show', compact('statBulanIni', 'statBulanLalu', 'persentase', 'target'));
     }
 
     public function edit(Statistik $statistik)

@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Ramsey\Uuid\Uuid;
 
-class Sosmed extends Model
+class Target extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sosmed', 'icon'];
-    protected $guarded = ['_token'];
+    protected $fillable = ['periode', 'pengikut', 'jangkauan', 'interaksi', 'sosmed_id'];
 
     public function getRouteKeyName(): string
     {
@@ -27,13 +26,8 @@ class Sosmed extends Model
         });
     }
 
-    public function statistiks(): HasMany
+    public function sosmed(): BelongsTo
     {
-        return $this->hasMany(Statistik::class);
-    }
-
-    public function targets(): HasMany
-    {
-        return $this->hasMany(Target::class);
+        return $this->belongsTo(Sosmed::class);
     }
 }

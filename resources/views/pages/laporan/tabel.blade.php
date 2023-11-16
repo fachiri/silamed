@@ -48,20 +48,23 @@
 							<thead>
 								<tr class="table-primary text-center">
 									<th rowspan="2">Media Sosial</th>
-									<th colspan="2">Pengikut</th>
+									<th colspan="3">Pengikut</th>
 									<th rowspan="2">Persentase</th>
-									<th colspan="2">Jangkauan</th>
+									<th colspan="3">Jangkauan</th>
 									<th rowspan="2">Persentase</th>
-									<th colspan="2">Interaksi</th>
+									<th colspan="3">Interaksi</th>
 									<th rowspan="2">Persentase</th>
 								</tr>
 								<tr class="table-primary text-center">
 									<th>Bulan Lalu</th>
 									<th>Bulan Ini</th>
+									<th>Target</th>
 									<th>Bulan Lalu</th>
 									<th>Bulan Ini</th>
+									<th>Target</th>
 									<th>Bulan Lalu</th>
 									<th>Bulan Ini</th>
+									<th>Target</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -70,12 +73,15 @@
 										<th>{{ $key }}</th>
 										<td>{{ $item['pengikutBulanLalu'] }}</td>
 										<td>{{ $item['pengikutBulanIni'] }}</td>
+										<td>{{ $item['targetPengikut'] }}</td>
 										<td>{{ $item['pengikutPersentase'] }}%</td>
 										<td>{{ $item['jangkauanBulanLalu'] }}</td>
 										<td>{{ $item['jangkauanBulanIni'] }}</td>
+										<td>{{ $item['targetJangkauan'] }}</td>
 										<td>{{ $item['jangkauanPersentase'] }}%</td>
 										<td>{{ $item['interaksiBulanLalu'] }}</td>
 										<td>{{ $item['interaksiBulanIni'] }}</td>
+										<td>{{ $item['targetInteraksi'] }}</td>
 										<td>{{ $item['interaksiPersentase'] }}%</td>
 									</tr>
 								@endforeach

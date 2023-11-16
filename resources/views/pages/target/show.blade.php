@@ -20,7 +20,6 @@
 									<th>Bulan Sebelumnya</th>
 									<th>Bulan Ini</th>
 									<th>Persentase</th>
-									<th>Target</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -35,9 +34,6 @@
 									@else
 										<td class="fw-bold"><i class="bi bi-dash-lg"></i> {{ $persentase->pengikut }}%</td>
 									@endif
-									<td class="fw-bold {{ $statBulanIni->pengikut >= $target->pengikut ? 'text-success' : 'text-danger' }}">
-										{{ $target->pengikut ?? '-' }}
-									</td>
 								</tr>
 								<tr>
 									<th class="border-end">Jangkauan</th>
@@ -50,9 +46,6 @@
 									@else
 										<td class="fw-bold"><i class="bi bi-dash-lg"></i> {{ $persentase->jangkauan }}%</td>
 									@endif
-									<td class="fw-bold {{ $statBulanIni->jangkauan >= $target->jangkauan ? 'text-success' : 'text-danger' }}">
-										{{ $target->jangkauan ?? '-' }}
-									</td>
 								</tr>
 								<tr>
 									<th class="border-end">Interaksi</th>
@@ -65,9 +58,6 @@
 									@else
 										<td class="fw-bold"><i class="bi bi-dash-lg"></i> {{ $persentase->interaksi }}%</td>
 									@endif
-									<td class="fw-bold {{ $statBulanIni->interaksi >= $target->interaksi ? 'text-success' : 'text-danger' }}">
-										{{ $target->interaksi ?? '-' }}
-									</td>
 								</tr>
 							</tbody>
 						</table>

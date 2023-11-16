@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sosmed;
 use App\Models\Statistik;
+use App\Models\Target;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -238,6 +239,7 @@ class LaporanController extends Controller
                     $periodeBulanLalu = $year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-01';
                     $statBulanLalu = Statistik::where(['periode' => $periodeBulanLalu, 'sosmed_id' => $sosmedItem->id])->first();
                 }
+                $target = Target::where(['periode' => $periode, 'sosmed_id' => $sosmedItem->id])->first();
 
                 $pengikutBulanIni = isset($statBulanIni) ? $statBulanIni->pengikut : 1;
                 $pengikutBulanLalu = isset($statBulanLalu) ? $statBulanLalu->pengikut : 1;
@@ -249,16 +251,16 @@ class LaporanController extends Controller
                 $stats[$i]['data'][$sosmedItem->sosmed] = [
                     'pengikutBulanIni' => $pengikutBulanIni,
                     'pengikutBulanLalu' => $pengikutBulanLalu,
-                    // 'pengikutPersentase' => number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2),
                     'jangkauanBulanIni' => $jangkauanBulanIni,
                     'jangkauanBulanLalu' => $jangkauanBulanLalu,
-                    // 'jangkauanPersentase' => number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2),
                     'interaksiBulanIni' => $interaksiBulanIni,
                     'interaksiBulanLalu' => $interaksiBulanLalu,
-                    // 'interaksiPersentase' => number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2),
                     'pengikutPersentase' => $pengikutBulanLalu > 0 ? number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2) : ($pengikutBulanLalu == 0 && $pengikutBulanIni > 0 ? 100 : 0),
                     'jangkauanPersentase' => $jangkauanBulanLalu > 0 ? number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2) : ($jangkauanBulanLalu == 0 && $jangkauanBulanIni > 0 ? 100 : 0),
                     'interaksiPersentase' => $interaksiBulanLalu > 0 ? number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2) : ($interaksiBulanLalu == 0 && $interaksiBulanIni > 0 ? 100 : 0),
+                    'targetPengikut' => $target->pengikut ?? '-',
+                    'targetJangkauan' => $target->jangkauan ?? '-',
+                    'targetInteraksi' => $target->interaksi ?? '-',
                 ];
             }
         }
@@ -310,6 +312,7 @@ class LaporanController extends Controller
                     $periodeBulanLalu = $year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-01';
                     $statBulanLalu = Statistik::where(['periode' => $periodeBulanLalu, 'sosmed_id' => $sosmedItem->id])->first();
                 }
+                $target = Target::where(['periode' => $periode, 'sosmed_id' => $sosmedItem->id])->first();
 
                 $pengikutBulanIni = isset($statBulanIni) ? $statBulanIni->pengikut : 1;
                 $pengikutBulanLalu = isset($statBulanLalu) ? $statBulanLalu->pengikut : 1;
@@ -321,16 +324,16 @@ class LaporanController extends Controller
                 $stats[$i]['data'][$sosmedItem->sosmed] = [
                     'pengikutBulanIni' => $pengikutBulanIni,
                     'pengikutBulanLalu' => $pengikutBulanLalu,
-                    // 'pengikutPersentase' => $statBulanLalu > 0 ? number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2) : 100, // jika bulanLalu == 0 dan bulanIni > 0, maka 100. jika bulanLalu dan bulanIni == 0, maka 0. else number_format.....
                     'jangkauanBulanIni' => $jangkauanBulanIni,
                     'jangkauanBulanLalu' => $jangkauanBulanLalu,
-                    // 'jangkauanPersentase' => $statBulanLalu > 0 ? number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2) : 100, // jika bulanLalu == 0 dan bulanIni > 0, maka 100. jika bulanLalu dan bulanIni == 0, maka 0. else number_format.....
                     'interaksiBulanIni' => $interaksiBulanIni,
                     'interaksiBulanLalu' => $interaksiBulanLalu,
-                    // 'interaksiPersentase' => $statBulanLalu > 0 ? number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2) : 100, // jika bulanLalu == 0 dan bulanIni > 0, maka 100. jika bulanLalu dan bulanIni == 0, maka 0. else number_format.....
                     'pengikutPersentase' => $pengikutBulanLalu > 0 ? number_format((($pengikutBulanIni - $pengikutBulanLalu) / $pengikutBulanLalu) * 100, 2) : ($pengikutBulanLalu == 0 && $pengikutBulanIni > 0 ? 100 : 0),
                     'jangkauanPersentase' => $jangkauanBulanLalu > 0 ? number_format((($jangkauanBulanIni - $jangkauanBulanLalu) / $jangkauanBulanLalu) * 100, 2) : ($jangkauanBulanLalu == 0 && $jangkauanBulanIni > 0 ? 100 : 0),
                     'interaksiPersentase' => $interaksiBulanLalu > 0 ? number_format((($interaksiBulanIni - $interaksiBulanLalu) / $interaksiBulanLalu) * 100, 2) : ($interaksiBulanLalu == 0 && $interaksiBulanIni > 0 ? 100 : 0),
+                    'targetPengikut' => $target->pengikut ?? '-',
+                    'targetJangkauan' => $target->jangkauan ?? '-',
+                    'targetInteraksi' => $target->interaksi ?? '-',
                 ];
             }
         }

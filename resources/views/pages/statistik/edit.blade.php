@@ -17,10 +17,13 @@
 						@method('PUT')
 						<div class="row mb-3">
 							<div class="col-12 col-md-3"><label for="bulan" class="mb-2 mb-md-0 w-100 text-start">Bulan</label></div>
-							<div class="col-12 col-md-9">
+							<div class="col-12 col-md-7">
 								<select class="form-select w-100" name="bulan" id="bulan" disabled>
 									<option>{{ tanggalIndonesia($statBulanIni->periode, 'bulan') }}</option>
 								</select>
+							</div>
+							<div class="col-12 col-md-2">
+								<input type="text" class="form-control @error('tahun') border-danger @enderror" id="tahun" name="tahun" maxlength="4" value="{{ tanggalIndonesia($statBulanIni->periode, 'tahun') }}" disabled >
 							</div>
 						</div>
 						<div class="row mb-3">

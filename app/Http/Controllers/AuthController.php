@@ -44,34 +44,4 @@ class AuthController extends Controller
         return redirect()
             ->route('login');
     }
-
-    public function change_password(Request $request)
-    {
-        try {
-            $user = User::where('id', auth()->user()->id)->firstOrFail();
-
-            $validator = Validator::make($request->all(), [
-                'old_password' => 'required|current_password',
-                'new_password' => 'required',
-                'repeat_new_password' => 'required|same:new_password'
-            ]);
-
-            if ($validator->fails()) {
-                return redirect()->back()->withInput()->withErrors($validator);
-            }
-
-            $user->password = Hash::make($request->new_password);
-            $user->save();
-
-            Session::flush();
-            Auth::logout();
-
-            return redirect()
-                ->route('login')
-                ->with('success', 'Password berhasil diubah!');
-        } catch (\Exception $e) {
-            return redirect()->back()
-                ->withErrors(['message' => ['Terjadi kesalahan!', $e->getMessage()]]);
-        }
-    }
 }

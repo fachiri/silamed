@@ -25,12 +25,14 @@ if (!function_exists('tanggalIndonesia')) {
       case 'bulan':
         return $bulan[$bulanAngka];
 
-      case 'bulan tahun':
-        return $bulan[$bulanAngka].' '.$tanggalArray[0];
-      
-      default:
-        return $tanggalArray[2].' '.$bulan[$bulanAngka].' '.$tanggalArray[0];
-    }
+      case 'tahun':
+        return $tanggalArray[0];
 
+      case 'bulan tahun':
+        return $bulan[$bulanAngka] . ' ' . $tanggalArray[0];
+
+      default:
+        return $tanggalArray[2] . ' ' . $bulan[$bulanAngka] . ' ' . $tanggalArray[0];
+    }
   }
 }
