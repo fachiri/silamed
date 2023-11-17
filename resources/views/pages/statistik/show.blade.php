@@ -35,7 +35,7 @@
 									@else
 										<td class="fw-bold"><i class="bi bi-dash-lg"></i> {{ $persentase->pengikut }}%</td>
 									@endif
-									<td class="fw-bold {{ $statBulanIni->pengikut >= $target->pengikut ? 'text-success' : 'text-danger' }}">
+									<td class="fw-bold {{ isset($target->pengikut) && $statBulanIni->pengikut >= $target->pengikut ? 'text-success' : 'text-danger' }}">
 										{{ $target->pengikut ?? '-' }}
 									</td>
 								</tr>
@@ -50,7 +50,7 @@
 									@else
 										<td class="fw-bold"><i class="bi bi-dash-lg"></i> {{ $persentase->jangkauan }}%</td>
 									@endif
-									<td class="fw-bold {{ $statBulanIni->jangkauan >= $target->jangkauan ? 'text-success' : 'text-danger' }}">
+									<td class="fw-bold {{ isset($target->jangkauan) && $statBulanIni->jangkauan >= $target->jangkauan ? 'text-success' : 'text-danger' }}">
 										{{ $target->jangkauan ?? '-' }}
 									</td>
 								</tr>
@@ -65,7 +65,7 @@
 									@else
 										<td class="fw-bold"><i class="bi bi-dash-lg"></i> {{ $persentase->interaksi }}%</td>
 									@endif
-									<td class="fw-bold {{ $statBulanIni->interaksi >= $target->interaksi ? 'text-success' : 'text-danger' }}">
+									<td class="fw-bold {{ isset($target->interaksi) && $statBulanIni->interaksi >= $target->interaksi ? 'text-success' : 'text-danger' }}">
 										{{ $target->interaksi ?? '-' }}
 									</td>
 								</tr>
