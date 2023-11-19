@@ -22,18 +22,20 @@
 	            (object) [
 	                'label' => 'Master',
 	                'icon' => 'bi bi-database-fill',
-	                'roles' => ['PIMPINAN'],
 	                'hasSubItems' => true,
 	                'subItems' => [
-	                    (object) [
+										(object) [
+													'roles' => ['ADMIN'],
 	                        'label' => 'Sosial Media',
 	                        'link' => route('sosmed.index'),
 	                    ],
 	                    (object) [
+													'roles' => ['PIMPINAN', 'ADMIN'],
 	                        'label' => 'Pengguna',
 	                        'link' => route('user.index'),
 	                    ],
 	                    (object) [
+													'roles' => ['ADMIN'],
 	                        'label' => 'Target',
 	                        'link' => route('target.index'),
 	                    ],
@@ -43,12 +45,12 @@
 	    ],
 	    (object) [
 	        'title' => 'Statistik',
-	        'roles' => ['ADMIN', 'PIMPINAN'],
+	        'roles' => ['ADMIN'],
 	        'items' => $sosialMediaItems,
 	    ],
 	    (object) [
 	        'title' => 'Laporan',
-	        'roles' => ['PIMPINAN'],
+	        'roles' => ['PIMPINAN', 'ADMIN'],
 	        'items' => [
 	            (object) [
 	                'label' => 'Grafik',

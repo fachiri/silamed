@@ -6,6 +6,22 @@
 @section('content')
 	<section>
 		<div class="row">
+			<div class="col-12">
+				<div class="card" style="height: 10.5rem">
+					<div class="card-body py-4.5 px-4">
+						<h5 class="mb-4">Anda login sebagai</h5>
+						<div class="d-flex align-items-center">
+							<div class="avatar avatar-xl">
+								<img src="{{ asset('images/default.jpg') }}">
+							</div>
+							<div class="name ms-3">
+								<h5 class="font-bold">{{ auth()->user()->name }}</h5>
+								<h6 class="text-muted mb-0">{{ auth()->user()->email }}</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			@if (count($sosmed) > 0)
 				@foreach ($sosmed as $item)
 					<div class="col-6">

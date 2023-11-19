@@ -28,6 +28,14 @@
 								</span>
 							</div>
 						</div>
+						<div class="mb-3">
+							<label for="name" class="form-label">Nama Akun</label>
+							<input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ $sosmed->name }}" placeholder="Instagram">
+						</div>
+						<div class="mb-3">
+							<label for="link" class="form-label">Tautan Akun</label>
+							<input type="text" class="form-control @error('link') border-danger @enderror" id="link" name="link" value="{{ $sosmed->link }}" placeholder="Instagram">
+						</div>
 						<div class="d-flex">
 							<button type="submit" class="btn btn-primary w-100">Submit</button>
 						</div>

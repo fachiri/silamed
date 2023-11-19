@@ -15,7 +15,9 @@ class StoreSosmedRequest extends FormRequest
     {
         return [
             'sosmed' => 'required|unique:sosmeds,sosmed',
-            'icon' => 'required'
+            'icon' => 'required',
+            'name' => 'required',
+            'link' => 'required',
         ];
     }
 }

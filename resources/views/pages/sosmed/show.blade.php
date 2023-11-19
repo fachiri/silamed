@@ -22,6 +22,14 @@
 								<th>Icon</th>
 								<td><i class="bi bi-{{ $sosmed->icon }}"></i></td>
 							</tr>
+							<tr>
+								<th>Nama Akun</th>
+								<td>{{ $sosmed->name }}</td>
+							</tr>
+							<tr>
+								<th>Tautan Akun</th>
+								<td><a href="{{ $sosmed->link }}">{{ $sosmed->link }}</a></td>
+							</tr>
 						</table>
 					</div>
 				</div>

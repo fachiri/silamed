@@ -15,7 +15,9 @@ class UpdateSosmedRequest extends FormRequest
     {
         return [
             'sosmed' => 'required',
-            'icon' => 'required'
+            'icon' => 'required',
+            'name' => 'required',
+            'link' => 'required',
         ];
     }
 }

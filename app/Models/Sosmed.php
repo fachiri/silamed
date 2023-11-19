@@ -11,7 +11,7 @@ class Sosmed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sosmed', 'icon'];
+    protected $fillable = ['sosmed', 'icon', 'name', 'link'];
     protected $guarded = ['_token'];
 
     public function getRouteKeyName(): string

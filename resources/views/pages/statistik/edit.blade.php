@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Edit Data '. $statBulanIni->sosmed->sosmed)
+@section('title', 'Edit Data '. $statBulanIni->sosmed->sosmed.' ('.$statBulanIni->sosmed->name.')')
 @section('content')
 	<section class="row">
 		<div class="col-12">

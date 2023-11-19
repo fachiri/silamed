@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Statistik '. $data->sosmed)
+@section('title', 'Statistik '. $data->sosmed.' ('.$data->name.')')
 @push('css')
 	<link rel="stylesheet" href="{{ asset('css/extensions/simple-datatable-style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/extensions/table-datatable.css') }}">

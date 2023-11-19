@@ -23,7 +23,7 @@ class SosmedController extends Controller
     public function store(StoreSosmedRequest $request)
     {
         try {
-            Sosmed::create($request->only('sosmed', 'icon'));
+            Sosmed::create($request->only('sosmed', 'icon', 'name', 'link'));
 
             return redirect()
                 ->route('sosmed.index')
@@ -51,6 +51,8 @@ class SosmedController extends Controller
         try {
             $sosmed->sosmed = $request->sosmed;
             $sosmed->icon = $request->icon;
+            $sosmed->name = $request->name;
+            $sosmed->link = $request->link;
             $sosmed->update();
 
             return redirect()

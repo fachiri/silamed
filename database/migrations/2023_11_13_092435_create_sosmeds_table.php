@@ -13,6 +13,8 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('sosmed')->unique();
             $table->string('icon');
+            $table->string('name');
+            $table->string('link');
             $table->timestamps();
         });
     }
