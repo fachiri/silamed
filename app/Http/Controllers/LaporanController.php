@@ -119,21 +119,16 @@ class LaporanController extends Controller
                 $j = 0;
 
                 for ($i = 0; $i < count($triwulan); $i++) {
-                    $startMonth = $i * 3;
-                    $endMonth = $startMonth + 2;
-
-                    for ($month = $startMonth; $month <= $endMonth; $month++) {
-                        if (isset($item->statistiks[$month])) {
-                            $dataPengikut[$j] = $item->statistiks[$month]->pengikut;
-                            $dataJangkauan[$j] = $item->statistiks[$month]->jangkauan;
-                            $dataInteraksi[$j] = $item->statistiks[$month]->interaksi;
-                        } else {
-                            $dataPengikut[$j] = null;
-                            $dataJangkauan[$j] = null;
-                            $dataInteraksi[$j] = null;
-                        }
-                        $j++;
+                    if (isset($item->statistiks[(($i + 1) * 3) - 1])) {
+                        $dataPengikut[$j] = $item->statistiks[(($i + 1) * 3) - 1]->pengikut;
+                        $dataJangkauan[$j] = $item->statistiks[(($i + 1) * 3) - 1]->jangkauan;
+                        $dataInteraksi[$j] = $item->statistiks[(($i + 1) * 3) - 1]->interaksi;
+                    } else {
+                        $dataPengikut[$j] = null;
+                        $dataJangkauan[$j] = null;
+                        $dataInteraksi[$j] = null;
                     }
+                    $j++;
                 }
 
                 $grafikPengikut->series[$key] = (object) [
