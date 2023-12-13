@@ -22,9 +22,10 @@
 						<div class="mb-3">
 							<label for="icon" class="form-label">Icon</label>
 							<div class="input-group">
-								<input type="text" class="form-control @error('icon') border-danger @enderror" id="icon" name="icon" value="{{ $sosmed->icon }}" placeholder="instagram">
+								<input type="file" class="form-control @error('icon') border-danger @enderror" id="icon">
+								<input type="hidden" id="icon-value" name="icon" value="{{ $sosmed->icon }}">
 								<span class="input-group-text" id="preview-icon">
-									<i class="bi bi-{{ $sosmed->icon }}" style="margin-top: -10px;"></i>
+									{!! $sosmed->icon !!}
 								</span>
 							</div>
 						</div>

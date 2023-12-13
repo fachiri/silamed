@@ -11,7 +11,7 @@
 						<div class="mb-3">
 							<label for="role" class="form-label">Role</label>
 							<select class="form-select w-100" name="role" id="role" disabled>
-								<option value="ADMIN">ADMIN</option>
+								<option value="KARYAWAN">KARYAWAN</option>
 							</select>
 						</div>
 						<div class="mb-3">

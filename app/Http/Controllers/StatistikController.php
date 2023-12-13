@@ -133,4 +133,27 @@ class StatistikController extends Controller
                 ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data.', $th->getMessage()]]);
         }
     }
+
+    public function evaluasi(Request $request, $uuid)
+    {
+        try {
+            $statistik = Statistik::where('uuid', $uuid)->first();
+
+            if(!$statistik) {
+                throw new \Error('Statistik tidak ditemukan!');
+            }
+
+            $statistik->evaluasi = $request->evaluasi;
+            $statistik->update();
+
+            return redirect()
+                ->back()
+                ->with('success', 'Data evaluasi berhasil dibuat!');
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data.', $th->getMessage()]]);
+        }
+    }
 }

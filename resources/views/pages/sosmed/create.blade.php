@@ -15,7 +15,8 @@
 						<div class="mb-3">
 							<label for="icon" class="form-label">Icon</label>
 							<div class="input-group">
-								<input type="text" class="form-control @error('icon') border-danger @enderror" id="icon" name="icon" value="{{ old('icon') }}" placeholder="instagram">
+								<input type="file" class="form-control @error('icon') border-danger @enderror" id="icon">
+								<input type="hidden" id="icon-value" name="icon" value="">
 								<span class="input-group-text" id="preview-icon"></span>
 							</div>
 						</div>
@@ -38,11 +39,40 @@
 @endsection
 @push('scripts')
 	<script>
-		const previewIcon = document.getElementById('preview-icon')
-		const inputIcon = document.getElementById('icon')
+		const previewIcon = document.getElementById('preview-icon');
+		const inputIcon = document.getElementById('icon');
+    const iconValueInput = document.getElementById('icon-value');
 
 		inputIcon.addEventListener('input', (e) => {
-			previewIcon.innerHTML = `<i class="bi bi-${e.target.value}" style="margin-top: -10px;"></i>`;
-		})
+			const file = inputIcon.files[0];
+
+			if (file && file.type === 'image/svg+xml') {
+				const reader = new FileReader();
+
+				reader.onload = (e) => {
+					const svgContent = e.target.result;
+
+					// Create a new SVG element
+					const svgElement = new DOMParser().parseFromString(svgContent, 'image/svg+xml').querySelector('svg');
+
+					// Set the width and height attributes
+					svgElement.setAttribute('width', '16');
+					svgElement.setAttribute('height', '16');
+
+					// Convert the modified SVG element back to a string
+					const modifiedSvgContent = new XMLSerializer().serializeToString(svgElement);
+					
+					iconValueInput.value = modifiedSvgContent;
+
+					// Set the modified SVG content as the innerHTML of previewIcon
+					previewIcon.innerHTML = modifiedSvgContent;
+				};
+
+				reader.readAsText(file);
+			} else {
+				previewIcon.innerHTML = '';
+				alert('Please select a valid SVG file.');
+			}
+		});
 	</script>
 @endpush

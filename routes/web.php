@@ -20,11 +20,13 @@ Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout
 
 Route::prefix('dashboard')->middleware(['web', 'auth', 'checkpassword'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::middleware(['roles:ADMIN'])->group(function () {
+    Route::middleware(['roles:ADMIN,KARYAWAN'])->group(function () {
         Route::resource('/statistik', StatistikController::class)->names('statistik');
+        Route::patch('/statistik/{uuid}/evaluasi', [StatistikController::class, 'evaluasi'])->name('statistik.evaluasi');
         Route::resource('/master/sosmed', SosmedController::class)->names('sosmed');
         Route::resource('/master/target', TargetController::class)->names('target');
     });
+    
     Route::middleware(['roles:PIMPINAN,ADMIN'])->group(function () {
         Route::resource('/master/user', UserController::class)->names('user');
         Route::get('/laporan/grafik', [LaporanController::class, 'grafik'])->name('laporan.grafik');

@@ -16,6 +16,7 @@
 						<table class="table-striped table" id="tabel-user">
 							<thead>
 								<tr>
+									<th>Role</th>
 									<th>Nama</th>
 									<th>Username</th>
 									<th>Email</th>
@@ -25,6 +26,7 @@
 							<tbody>
 								@foreach ($users as $item)
 									<tr>
+										<td>{{ $item->role }}</td>
 										<td>{{ $item->name }}</td>
 										<td>{{ $item->username }}</td>
 										<td>{{ $item->email }}</td>

@@ -3,7 +3,7 @@
 	foreach ($sidebarLinks as $key => $link) {
 	    $sosialMediaItems[$key] = (object) [
 	        'label' => $link->sosmed,
-	        'icon' => 'bi bi-' . $link->icon,
+	        'icon' => $link->icon,
 	        'hasSubItems' => false,
 	        'link' => route('statistik.index', ['sosmed' => strtolower($link->sosmed)]),
 	    ];
@@ -11,17 +11,18 @@
 	$links = [
 	    (object) [
 	        'title' => 'Menu',
-	        'roles' => ['ADMIN', 'PIMPINAN'],
+	        'roles' => ['ADMIN', 'PIMPINAN', 'KARYAWAN'],
 	        'items' => [
 	            (object) [
 	                'label' => 'Dasbor',
-	                'icon' => 'bi bi-grid-fill',
+	                'icon' => '<i class="bi bi-grid-fill"></i>',
 	                'hasSubItems' => false,
 	                'link' => route('dashboard.index'),
 	            ],
 	            (object) [
+									'roles' => ['ADMIN'],
 	                'label' => 'Master',
-	                'icon' => 'bi bi-database-fill',
+	                'icon' => '<i class="bi bi-database-fill"></i>',
 	                'hasSubItems' => true,
 	                'subItems' => [
 										(object) [
@@ -30,7 +31,7 @@
 	                        'link' => route('sosmed.index'),
 	                    ],
 	                    (object) [
-													'roles' => ['PIMPINAN', 'ADMIN'],
+													'roles' => ['ADMIN'],
 	                        'label' => 'Pengguna',
 	                        'link' => route('user.index'),
 	                    ],
@@ -45,7 +46,7 @@
 	    ],
 	    (object) [
 	        'title' => 'Statistik',
-	        'roles' => ['ADMIN'],
+	        'roles' => ['ADMIN', 'KARYAWAN'],
 	        'items' => $sosialMediaItems,
 	    ],
 	    (object) [
@@ -54,13 +55,13 @@
 	        'items' => [
 	            (object) [
 	                'label' => 'Grafik',
-	                'icon' => 'bi bi-bar-chart-line-fill',
+	                'icon' => '<i class="bi bi-bar-chart-line-fill"></i>',
 	                'hasSubItems' => false,
 	                'link' => route('laporan.grafik'),
 	            ],
 	            (object) [
 	                'label' => 'Tabel',
-	                'icon' => 'bi bi-table',
+	                'icon' => '<i class="bi bi-table"></i>',
 	                'hasSubItems' => false,
 	                'link' => route('laporan.tabel'),
 	            ],
@@ -71,13 +72,13 @@
 	        'items' => [
 	            (object) [
 	                'label' => 'Pengaturan',
-	                'icon' => 'bi bi-gear-fill',
+	                'icon' => '<i class="bi bi-gear-fill"></i>',
 	                'hasSubItems' => false,
 	                'link' => route('setting.index'),
 	            ],
 	            (object) [
 	                'label' => 'Keluar',
-	                'icon' => 'bi bi-door-closed-fill',
+	                'icon' => '<i class="bi bi-door-closed-fill"></i>',
 	                'hasSubItems' => false,
 	                'link' => route('auth.logout'),
 	            ],
@@ -128,7 +129,7 @@
 								@if ($item->hasSubItems)
 									<li class="sidebar-item has-sub">
 										<a href="#" class='sidebar-link'>
-											<i class="{{ $item->icon }}"></i>
+											{!! $item->icon !!}
 											<span>{{ $item->label }}</span>
 										</a>
 										<ul class="submenu">
@@ -144,7 +145,7 @@
 								@else
 									<li class="sidebar-item">
 										<a href="{{ $item->link }}" class='sidebar-link'>
-											<i class="{{ $item->icon }}"></i>
+											{!! $item->icon !!}
 											<span>{{ $item->label }}</span>
 										</a>
 									</li>

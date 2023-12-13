@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('jangkauan');
             $table->integer('interaksi');
             $table->date('periode');
+            $table->text('evaluasi')->nullable();
             $table->timestamps();
         });
     }

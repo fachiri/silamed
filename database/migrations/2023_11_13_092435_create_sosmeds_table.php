@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('sosmed')->unique();
-            $table->string('icon');
+            $table->text('icon');
             $table->string('name');
             $table->string('link');
             $table->timestamps();

@@ -11,7 +11,7 @@ class Statistik extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['periode', 'pengikut', 'jangkauan', 'interaksi', 'sosmed_id'];
+    protected $fillable = ['periode', 'pengikut', 'jangkauan', 'interaksi', 'sosmed_id', 'evaluasi'];
     protected $guarded = ['_token'];
 
     public function getRouteKeyName(): string

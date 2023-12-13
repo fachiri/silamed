@@ -13,7 +13,7 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->string('name');
             $table->string('username');
-            $table->string('role')->default('ADMIN');
+            $table->string('role')->default('KARYAWAN');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -75,5 +75,20 @@
 				</div>
 			</div>
 		</div>
+		@if (auth()->user()->role == 'ADMIN')
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body py-4-5 px-4">
+						<h5 class="mb-3">Evaluasi</h5>
+						<form action="{{ route('statistik.evaluasi', $statBulanIni->uuid) }}" method="POST">
+							@csrf
+							@method('PATCH')
+							<textarea class="form-control mb-3" id="evaluasi" name="evaluasi" rows="3">{{ $statBulanIni->evaluasi }}</textarea>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		@endif
 	</section>
 @endsection

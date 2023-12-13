@@ -20,7 +20,7 @@
 							</tr>
 							<tr>
 								<th>Icon</th>
-								<td><i class="bi bi-{{ $sosmed->icon }}"></i></td>
+								<td>{!! $sosmed->icon !!}</td>
 							</tr>
 							<tr>
 								<th>Nama Akun</th>
